@@ -1,27 +1,33 @@
 *{box-sizing:border-box}
-:root{--p:#6b4bb6;--p2:#eee7fa;--bg:#f7f4fc;--card:#fff;--text:#202124;--muted:#777;--line:#e4e0e9}
+:root{--p:#6b4bb6;--p2:#eee7fa;--bg:#f7f4fc;--card:#fff;--text:#202124;--muted:#777;--line:#e4e0e9;--ok:#2e7d32;--bad:#c62828}
 body.dark{--bg:#14121a;--card:#211e29;--text:#f4f1f7;--muted:#aaa3b5;--line:#383341;--p2:#332b43}
 body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,sans-serif;padding-bottom:82px}
 button,input{font:inherit}
+button{border:0;border-radius:15px;padding:13px 17px;background:var(--p);color:#fff;cursor:pointer}
+button:disabled{opacity:.7;cursor:default}
 .top{background:var(--p);color:#fff;padding:20px 22px;display:flex;align-items:center;justify-content:space-between}
 .top h1{margin:0;font-size:30px}.top p{margin:5px 0 0;opacity:.9}
 .iconBtn{background:#ffffff22;border:0;border-radius:50%;width:52px;height:52px;font-size:25px}
 main{max-width:820px;margin:auto;padding:18px}
 .page{display:none}.page.active{display:block}
-.wordCard,.quizCard,.reviewCard{background:var(--card);border:1px solid var(--line);border-radius:26px;padding:28px;text-align:center;box-shadow:0 4px 18px #0000000b}
+.wordCard,.quizCard,.reviewCard,.practiceCard{background:var(--card);border:1px solid var(--line);border-radius:26px;padding:28px;text-align:center;box-shadow:0 4px 18px #0000000b}
 .eyebrow{color:var(--p);font-size:13px;font-weight:bold;letter-spacing:.5px}
 .wordCard h2,.quizCard h2,.reviewCard h2{font-size:48px;margin:22px 0 6px}
 .ipa{color:var(--muted);font-size:19px}.meaning{font-size:25px;font-weight:bold;margin:15px 0}
 .example{background:var(--p2);padding:14px;border-radius:16px;color:var(--muted);font-style:italic;margin:16px 0}
-.actions{display:flex;flex-wrap:wrap;justify-content:center;gap:4px}
-button{border:0;border-radius:15px;padding:13px 17px;background:var(--p);color:#fff;cursor:pointer}
+.actions{display:flex;flex-wrap:wrap;justify-content:center;gap:7px}
 button.soft{background:var(--p2);color:var(--p)}
 .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:18px 0}
 .stats div{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:17px;text-align:center}
 .stats b,.stats span{display:block}.stats b{font-size:26px}.stats span{color:var(--muted);margin-top:5px}
+.levelCard{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:16px;margin:12px 0 20px}
+.levelTop{display:flex;justify-content:space-between;gap:10px;margin-bottom:10px}.levelTop span{color:var(--muted)}
+.progress{height:10px;background:var(--p2);border-radius:99px;overflow:hidden}.progress i{display:block;height:100%;width:0;background:var(--p);border-radius:99px}
+.levelCard small{display:block;color:var(--muted);margin-top:8px}
 h3{font-size:23px}.quickGrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .quickGrid button{background:var(--card);color:var(--text);border:1px solid var(--line);font-size:23px;padding:18px}
 .quickGrid small{display:block;color:var(--muted);font-size:13px;margin-top:5px}
+.reminder{background:var(--p2);color:var(--p);border-radius:18px;padding:14px;margin:14px 0;font-weight:bold}
 .pageTitle{display:flex;justify-content:space-between;align-items:center}.pageTitle h2{font-size:30px}
 .pageTitle span{color:var(--muted)}
 .search{width:100%;padding:16px;border:1px solid var(--line);border-radius:18px;background:var(--card);color:var(--text);outline:none}
@@ -31,7 +37,15 @@ h3{font-size:23px}.quickGrid{display:grid;grid-template-columns:1fr 1fr;gap:12px
 .choices{display:grid;gap:10px;margin-top:20px}.choices button{background:var(--card);color:var(--text);border:1px solid var(--line);text-align:left}.choices button.correct{background:#dff5e5;color:#176b34}.choices button.wrong{background:#ffe1e1;color:#9b1c1c}
 .feedback{min-height:25px;font-weight:bold}.empty{background:var(--card);border:1px solid var(--line);padding:28px;border-radius:22px;text-align:center;line-height:1.7}
 .rating{display:grid;grid-template-columns:1fr 1fr;gap:8px}.rating button{background:var(--p2);color:var(--p)}
-.setting{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;margin:10px 0;display:flex;align-items:center;justify-content:space-between}.setting small{display:block;color:var(--muted);margin-top:4px}.danger{background:#c62828}.toggle{background:#2e7d32}.about{padding:18px;color:var(--muted)}
+.setting{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;margin:10px 0;display:flex;align-items:center;justify-content:space-between;gap:12px}.setting small{display:block;color:var(--muted);margin-top:4px}.danger{background:var(--bad)}.toggle{background:var(--ok)}
+.about{padding:18px;color:var(--muted)}
 .bottom{position:fixed;left:0;right:0;bottom:0;background:var(--card);border-top:1px solid var(--line);display:grid;grid-template-columns:repeat(5,1fr);padding:8px 5px;z-index:10}
 .bottom button{background:transparent;color:var(--muted);padding:7px 2px;border-radius:10px;font-size:20px}.bottom button span{display:block;font-size:12px;margin-top:3px}.bottom button.active{color:var(--p)}
-@media(max-width:520px){.wordCard h2,.quizCard h2,.reviewCard h2{font-size:40px}.stats{gap:7px}.stats div{padding:13px 5px}.actions button{padding:12px 13px}.top{padding:18px}.quickGrid{gap:8px}}
+.modeTabs{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin:12px 0}.modeTab{background:var(--card);color:var(--text);border:1px solid var(--line)}.modeTab.active{background:var(--p);color:#fff}
+.practiceCard{margin-top:12px}
+.bigAction{font-size:18px;margin:15px 0}
+.readingText{background:var(--p2);border-radius:18px;padding:18px;text-align:left;line-height:1.7;margin:15px 0}
+.flashcard{min-height:230px;display:flex;align-items:center;justify-content:center;background:var(--p2);border-radius:22px;padding:25px;margin:10px 0;cursor:pointer}
+.flashcard b{font-size:42px;display:block}.flashcard small{display:block;color:var(--muted);margin-top:12px}
+.detailStats{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;margin:10px 0}.detailStats div{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--line)}.detailStats div:last-child{border-bottom:0}
+@media(max-width:520px){.wordCard h2,.quizCard h2,.reviewCard h2{font-size:40px}.stats{gap:7px}.stats div{padding:13px 5px}.actions button{padding:12px 13px}.top{padding:18px}.quickGrid{gap:8px}.setting{align-items:flex-start}.setting button{white-space:nowrap}}
