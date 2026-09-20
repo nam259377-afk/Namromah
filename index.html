@@ -103,16 +103,33 @@
       <button id="readingNext" hidden>Bài tiếp theo →</button>
     </div>
 
-    <div id="flashMode" class="practiceCard" hidden>
-      <div class="eyebrow">FLASHCARD</div>
+    <div id="flashMode" class="practiceCard flashMode" hidden>
+      <div class="flashHead">
+        <div>
+          <div class="eyebrow">FLASHCARD</div>
+          <h3>Học bằng cách lật thẻ</h3>
+        </div>
+        <span id="flashProgress">1/60</span>
+      </div>
+
       <div id="flashcard" class="flashcard">
-        <div id="flashFront"><b id="flashWord">word</b><small>Chạm để lật</small></div>
-        <div id="flashBack" hidden><b id="flashMeaning">nghĩa</b><small id="flashExample"></small></div>
+        <div id="flashFront" class="flashSide">
+          <span class="flashIcon">A</span>
+          <b id="flashWord">word</b>
+          <span class="flashHint">Chạm vào thẻ để lật</span>
+        </div>
+        <div id="flashBack" class="flashSide" hidden>
+          <span class="flashIcon">✓</span>
+          <b id="flashMeaning">nghĩa</b>
+          <small id="flashExample"></small>
+        </div>
       </div>
-      <div class="actions">
-        <button id="flashSpeak">🔊 Phát âm</button>
-        <button id="flashNext">Thẻ tiếp theo →</button>
+
+      <div class="flashControls">
+        <button id="flashSpeak" class="flashAction">🔊 Nghe</button>
+        <button id="flashNext" class="flashAction primary">Thẻ tiếp theo →</button>
       </div>
+      <p class="flashTip">💡 Mẹo: thử tự nhớ nghĩa trước khi lật thẻ.</p>
     </div>
   </section>
 

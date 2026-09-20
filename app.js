@@ -282,12 +282,25 @@ $("readingNext").onclick=()=>{readingIndex=(readingIndex+1)%READING.length;rende
 
 function renderFlash(){
   const w=WORDS[flashIndex];
-  $("flashWord").textContent=w[0];$("flashMeaning").textContent=w[2];$("flashExample").textContent=w[3];
-  $("flashFront").hidden=false;$("flashBack").hidden=true;
+  $("flashWord").textContent=w[0];
+  $("flashMeaning").textContent=w[2];
+  $("flashExample").textContent=`“${w[3]}”`;
+  $("flashProgress").textContent=`${flashIndex+1}/${WORDS.length}`;
+  $("flashFront").hidden=false;
+  $("flashBack").hidden=true;
 }
-$("flashcard").onclick=()=>{$("flashFront").hidden=!$("flashFront").hidden;$("flashBack").hidden=!$("flashBack").hidden;};
+$("flashcard").onclick=()=>{
+  const showingFront=!$("flashFront").hidden;
+  $("flashFront").hidden=!showingFront;
+  $("flashBack").hidden=showingFront;
+};
 $("flashSpeak").onclick=()=>speak(WORDS[flashIndex][0]);
-$("flashNext").onclick=()=>{markLearned(flashIndex,5);flashIndex=(flashIndex+1)%WORDS.length;renderFlash()};
+$("flashNext").onclick=()=>{
+  markLearned(flashIndex,5);
+  flashIndex=(flashIndex+1)%WORDS.length;
+  renderFlash();
+  $("flashcard").animate([{transform:"scale(.98)"},{transform:"scale(1)"}],{duration:220,easing:"ease-out"});
+};
 
 $("soundToggle").onclick=()=>{state.sound=!state.sound;$("soundToggle").textContent=state.sound?"Bật":"Tắt";save()};
 
