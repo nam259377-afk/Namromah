@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#6750A4">
+  <title>Namromah</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <header>
+    <h1>Namromah</h1>
+    <p>Học tiếng Anh mỗi ngày</p>
+  </header>
+
+  <main>
+
+    <section class="card">
+      <div class="label">TỪ VỰNG HÔM NAY</div>
+
+      <h2 id="word">achieve</h2>
+
+      <p id="meaning">đạt được</p>
+
+      <button onclick="speakWord()">🔊 Phát âm</button>
+      <button onclick="nextWord()">Từ tiếp theo →</button>
+
+      <button class="favorite" onclick="favoriteWord()">
+        ⭐ Lưu từ
+      </button>
+    </section>
+
+    <section class="stats">
+      <div>
+        <strong id="learned">0</strong>
+        <span>Đã học</span>
+      </div>
+
+      <div>
+        <strong id="favorites">0</strong>
+        <span>Đã lưu</span>
+      </div>
+
+      <div>
+        <strong id="streak">1</strong>
+        <span>Ngày liên tiếp</span>
+      </div>
+    </section>
+
+    <section class="menu">
+      <button onclick="showQuiz()">📝 Quiz</button>
+      <button>🎧 Listening</button>
+      <button>📖 Reading</button>
+      <button>🧠 Ôn tập</button>
+    </section>
+
+  </main>
+
+  <footer>
+    Namromah • English learning
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
