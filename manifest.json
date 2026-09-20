@@ -1,1 +1,9 @@
-{"name":"Namromah","short_name":"Namromah","start_url":"./","display":"standalone","background_color":"#f7f4fb","theme_color":"#6750A4","lang":"vi","description":"Học tiếng Anh mỗi ngày","icons":[{"src":"./icon.svg","sizes":"any","type":"image/svg+xml","purpose":"any maskable"}]}
+{
+  "name":"Namromah 2.2",
+  "short_name":"Namromah",
+  "start_url":".",
+  "display":"standalone",
+  "background_color":"#f7f4fc",
+  "theme_color":"#6b4bb6",
+  "icons":[{"src":"icon.svg","sizes":"any","type":"image/svg+xml"}]
+}

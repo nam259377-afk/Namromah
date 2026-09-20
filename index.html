@@ -3,128 +3,118 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#6750A4">
-<title>Namromah</title>
-<link rel="manifest" href="./manifest.json">
-<link rel="icon" href="./icon.svg" type="image/svg+xml">
-<link rel="stylesheet" href="./style.css">
+<meta name="theme-color" content="#6b4bb6">
+<title>Namromah 2.2</title>
+<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
-<div id="app">
-<header class="topbar">
-  <div><div class="brand">Namromah</div><div class="subtitle">Học tiếng Anh mỗi ngày</div></div>
-  <button class="icon-btn" id="themeBtn">🌙</button>
+<header class="top">
+  <div>
+    <h1>Namromah</h1>
+    <p>Học tiếng Anh mỗi ngày</p>
+  </div>
+  <button id="themeBtn" class="iconBtn" aria-label="Đổi giao diện">🌙</button>
 </header>
 
-<main>
-<section id="home" class="page active">
-  <div class="hero card">
-    <div class="eyebrow">TỪ HÔM NAY</div>
-    <div class="word" id="homeWord">achieve</div>
-    <div class="ipa" id="homeIpa">/əˈtʃiːv/</div>
-    <div class="meaning" id="homeMeaning">đạt được</div>
-    <div class="example" id="homeExample"></div>
-    <div class="actions">
-      <button class="primary" id="speakBtn">🔊 Nghe</button>
-      <button class="secondary" id="nextBtn">Từ tiếp theo →</button>
-      <button class="secondary" id="saveBtn">☆ Lưu</button>
+<main id="app">
+  <section id="home" class="page active">
+    <div class="wordCard">
+      <div class="eyebrow">TỪ VỰNG HÔM NAY</div>
+      <h2 id="homeWord">achieve</h2>
+      <div id="homeIpa" class="ipa">/əˈtʃiːv/</div>
+      <p id="homeMeaning" class="meaning">đạt được</p>
+      <div id="homeExample" class="example">She worked hard to achieve her goal.</div>
+      <div class="actions">
+        <button id="speakBtn">🔊 Phát âm</button>
+        <button id="nextBtn">Từ tiếp theo →</button>
+        <button id="favBtn" class="soft">☆ Lưu</button>
+      </div>
     </div>
-  </div>
 
-  <div class="stats-grid">
-    <div class="stat card"><b id="learnedStat">0</b><span>Đã học</span></div>
-    <div class="stat card"><b id="masteredStat">0</b><span>Đã nhớ</span></div>
-    <div class="stat card"><b id="reviewStat">0</b><span>Cần ôn</span></div>
-  </div>
-
-  <div class="progress-card card">
-    <div class="progress-head"><b>Tiến độ bộ từ</b><span id="progressText">0%</span></div>
-    <div class="progress"><i id="progressBar"></i></div>
-    <small>Học và đánh giá từ để tăng mức độ ghi nhớ.</small>
-  </div>
-
-  <div class="section-title">Học nhanh</div>
-  <div class="feature-grid">
-    <button class="feature card" data-page="review">🧠<strong>Ôn tập</strong><span id="reviewShortcut">0 từ đến hạn</span></button>
-    <button class="feature card" data-page="quiz">📝<strong>Quiz</strong><span>Kiểm tra trí nhớ</span></button>
-  </div>
-</section>
-
-<section id="vocab" class="page">
-  <div class="page-head"><h2>Từ vựng</h2><span id="vocabCount"></span></div>
-  <input class="search" id="searchInput" placeholder="🔎 Tìm từ hoặc nghĩa...">
-  <div class="chips" id="categoryChips"></div>
-  <div id="vocabList" class="list"></div>
-</section>
-
-<section id="review" class="page">
-  <div class="page-head"><h2>Ôn tập</h2><span id="reviewTitle"></span></div>
-  <div class="review-guide card">
-    <b>Quy tắc ôn tập</b>
-    <p>Không nhớ → gặp lại sớm. Nhớ → giãn khoảng cách. Rất nhớ → giãn lâu hơn.</p>
-  </div>
-  <div id="reviewEmpty" class="empty card">🎉 Không có từ đến hạn. Hãy học thêm từ mới!</div>
-  <div id="reviewCard" class="review-card card" hidden>
-    <div class="eyebrow">THẺ ÔN TẬP</div>
-    <div class="word" id="reviewWord"></div>
-    <div class="ipa" id="reviewIpa"></div>
-    <button class="primary" id="reviewSpeak">🔊 Nghe</button>
-    <button class="secondary full" id="reviewReveal">Hiện nghĩa</button>
-    <div id="reviewMeaning" class="meaning hidden"></div>
-    <div id="reviewExample" class="example hidden"></div>
-    <div id="reviewActions" class="review-actions hidden">
-      <button class="bad" data-grade="0">😕 Chưa nhớ</button>
-      <button class="ok" data-grade="1">🙂 Nhớ</button>
-      <button class="good" data-grade="2">😎 Rất nhớ</button>
+    <div class="stats">
+      <div><b id="learnedStat">0</b><span>Đã học</span></div>
+      <div><b id="dueStat">0</b><span>Cần ôn</span></div>
+      <div><b id="streakStat">1</b><span>Ngày liên tiếp</span></div>
     </div>
-  </div>
-</section>
 
-<section id="quiz" class="page">
-  <div class="page-head"><h2>Quiz</h2><span id="quizScore">0 điểm</span></div>
-  <div class="quiz card">
-    <div class="eyebrow" id="quizProgress">CÂU 1</div>
-    <h3 id="quizQuestion"></h3>
-    <div id="quizOptions" class="options"></div>
-    <button class="secondary full" id="nextQuizBtn" hidden>Câu tiếp theo →</button>
-  </div>
-</section>
+    <h3>Học nhanh</h3>
+    <div class="quickGrid">
+      <button data-page="quiz">📝<br><b>Quiz</b><small>10 câu</small></button>
+      <button data-page="review">🧠<br><b>Ôn tập</b><small>Từ đến hạn</small></button>
+      <button data-page="vocab">📚<br><b>Từ vựng</b><small>60 từ</small></button>
+      <button id="quickSpeak">🎧<br><b>Nghe</b><small>Phát âm từ</small></button>
+    </div>
+  </section>
 
-<section id="stats" class="page">
-  <div class="page-head"><h2>Tiến độ</h2></div>
-  <div class="stats-big card">
-    <div><b id="statLearned">0</b><span>Đã học</span></div>
-    <div><b id="statMastered">0</b><span>Đã nhớ</span></div>
-    <div><b id="statFav">0</b><span>Yêu thích</span></div>
-  </div>
-  <div class="card breakdown">
-    <h3>Mức độ ghi nhớ</h3>
-    <div class="bar-row"><span>Mới</span><i><em id="level0"></em></i><b id="level0n">0</b></div>
-    <div class="bar-row"><span>Đang học</span><i><em id="level1"></em></i><b id="level1n">0</b></div>
-    <div class="bar-row"><span>Khá nhớ</span><i><em id="level2"></em></i><b id="level2n">0</b></div>
-    <div class="bar-row"><span>Rất nhớ</span><i><em id="level3"></em></i><b id="level3n">0</b></div>
-    <div class="bar-row"><span>Thành thạo</span><i><em id="level4"></em></i><b id="level4n">0</b></div>
-  </div>
-</section>
+  <section id="vocab" class="page">
+    <div class="pageTitle"><h2>Từ vựng</h2><span id="vocabCount">60 từ</span></div>
+    <input id="search" class="search" placeholder="🔎 Tìm từ hoặc nghĩa...">
+    <div id="filters" class="filters"></div>
+    <div id="vocabList"></div>
+  </section>
 
-<section id="settings" class="page">
-  <div class="page-head"><h2>Cài đặt</h2></div>
-  <div class="settings-list card">
-    <label class="setting"><span>Chế độ tối</span><input type="checkbox" id="darkToggle"></label>
-    <label class="setting"><span>Tốc độ phát âm</span><select id="rateSelect"><option value=".7">Chậm</option><option value=".85">Bình thường</option><option value="1">Nhanh</option></select></label>
-    <button class="danger" id="resetBtn">Xóa dữ liệu học tập</button>
-  </div>
-</section>
+  <section id="quiz" class="page">
+    <div class="pageTitle"><h2>Quiz</h2><span id="quizProgress">0/10</span></div>
+    <div class="quizCard">
+      <div class="eyebrow">CHỌN ĐÁP ÁN ĐÚNG</div>
+      <h2 id="quizWord">achieve</h2>
+      <div id="quizChoices" class="choices"></div>
+      <p id="quizFeedback" class="feedback"></p>
+      <button id="quizNext" hidden>Câu tiếp theo →</button>
+    </div>
+  </section>
+
+  <section id="review" class="page">
+    <div class="pageTitle"><h2>Ôn tập</h2><span id="reviewCount">0 từ</span></div>
+    <div id="reviewEmpty" class="empty" hidden>🎉 Chưa có từ nào cần ôn.<br>Hãy học vài từ trước nhé!</div>
+    <div id="reviewCard" class="reviewCard" hidden>
+      <div class="eyebrow">ÔN TẬP</div>
+      <h2 id="reviewWord">word</h2>
+      <div id="reviewIpa" class="ipa"></div>
+      <button id="showAnswer">Hiện nghĩa</button>
+      <div id="reviewAnswer" hidden>
+        <p class="meaning" id="reviewMeaning"></p>
+        <div class="example" id="reviewExample"></div>
+        <p>Bạn nhớ từ này đến mức nào?</p>
+        <div class="rating">
+          <button data-rating="0">😵 Quên</button>
+          <button data-rating="1">😐 Khó</button>
+          <button data-rating="2">🙂 Nhớ</button>
+          <button data-rating="3">😎 Dễ</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="settings" class="page">
+    <div class="pageTitle"><h2>Cài đặt</h2></div>
+    <div class="setting">
+      <div><b>Âm thanh</b><small>Phát âm tiếng Anh khi bấm 🔊</small></div>
+      <button id="soundToggle" class="toggle">Bật</button>
+    </div>
+    <div class="setting">
+      <div><b>Đặt lại tiến độ</b><small>Xóa dữ liệu học trên thiết bị này</small></div>
+      <button id="resetBtn" class="danger">Xóa</button>
+    </div>
+    <div class="about">
+      <b>Namromah 2.2</b>
+      <p>Ứng dụng học tiếng Anh cá nhân, chạy trực tiếp trên trình duyệt.</p>
+    </div>
+  </section>
 </main>
 
-<nav class="bottom-nav">
-<button class="nav active" data-page="home">🏠<span>Trang chủ</span></button>
-<button class="nav" data-page="vocab">📚<span>Từ vựng</span></button>
-<button class="nav" data-page="review">🧠<span>Ôn tập</span></button>
-<button class="nav" data-page="stats">📊<span>Tiến độ</span></button>
-<button class="nav" data-page="settings">⚙️<span>Cài đặt</span></button>
+<nav class="bottom">
+  <button data-page="home">🏠<span>Trang chủ</span></button>
+  <button data-page="vocab">📚<span>Từ vựng</span></button>
+  <button data-page="quiz">📝<span>Quiz</span></button>
+  <button data-page="review">🧠<span>Ôn tập</span></button>
+  <button data-page="settings">⚙️<span>Cài đặt</span></button>
 </nav>
-</div>
-<script src="./app.js"></script>
+
+<script src="app.js"></script>
+<script>
+if ("serviceWorker" in navigator) navigator.serviceWorker.register("sw.js").catch(()=>{});
+</script>
 </body>
 </html>
