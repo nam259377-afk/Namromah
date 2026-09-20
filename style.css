@@ -75,3 +75,7 @@ h3{font-size:23px}.quickGrid{display:grid;grid-template-columns:1fr 1fr;gap:12px
   .flashcard,.flashSide{min-height:285px}
   .flashSide b{font-size:40px}
 }
+
+/* Fix: only show one Flashcard face at a time */
+.flashSide[hidden]{display:none!important}
+.flashSide:not([hidden]){display:flex}
