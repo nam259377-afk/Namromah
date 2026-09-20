@@ -1,73 +1,11 @@
-const words = [
-  ["achieve", "đạt được"],
-  ["improve", "cải thiện"],
-  ["reliable", "đáng tin cậy"],
-  ["opportunity", "cơ hội"],
-  ["confident", "tự tin"],
-  ["environment", "môi trường"],
-  ["experience", "kinh nghiệm"],
-  ["knowledge", "kiến thức"],
-  ["successful", "thành công"],
-  ["challenge", "thử thách"]
-];
-
-let current = 0;
-let learned = Number(localStorage.getItem("learned") || 0);
-let favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
-
-function showWord() {
-  document.getElementById("word").textContent = words[current][0];
-  document.getElementById("meaning").textContent = words[current][1];
-}
-
-function nextWord() {
-  current = (current + 1) % words.length;
-  learned++;
-
-  localStorage.setItem("learned", learned);
-  document.getElementById("learned").textContent = learned;
-
-  showWord();
-}
-
-function speakWord() {
-  const word = words[current][0];
-
-  if ("speechSynthesis" in window) {
-    speechSynthesis.cancel();
-
-    const speech = new SpeechSynthesisUtterance(word);
-    speech.lang = "en-US";
-    speech.rate = 0.8;
-
-    speechSynthesis.speak(speech);
-  }
-}
-
-function favoriteWord() {
-  const word = words[current][0];
-
-  if (!favorites.includes(word)) {
-    favorites.push(word);
-    localStorage.setItem("favorites", JSON.stringify(favorites));
-  }
-
-  document.getElementById("favorites").textContent = favorites.length;
-}
-
-function showQuiz() {
-  const answer = prompt(
-    "Từ 'achieve' có nghĩa là gì?\n\nA. Đạt được\nB. Thử thách\nC. Môi trường"
-  );
-
-  if (answer && answer.toLowerCase() === "a") {
-    alert("🎉 Chính xác!");
-  } else if (answer) {
-    alert("❌ Chưa đúng. Đáp án là A.");
-  }
-}
-
-document.getElementById("learned").textContent = learned;
-document.getElementById("favorites").textContent = favorites.length;
-
-showWord();
+const W=[
+['achieve','/əˈtʃiːv/','đạt được','She worked hard to achieve her goal.','Daily'],['improve','/ɪmˈpruːv/','cải thiện','I want to improve my English.','Daily'],['reliable','/rɪˈlaɪəbəl/','đáng tin cậy','He is a reliable friend.','People'],['opportunity','/ˌɑːpərˈtuːnəti/','cơ hội','This is a great opportunity.','Daily'],['confident','/ˈkɑːnfɪdənt/','tự tin','She feels confident about the test.','People'],['environment','/ɪnˈvaɪrənmənt/','môi trường','We should protect the environment.','Nature'],['experience','/ɪkˈspɪriəns/','kinh nghiệm','Work experience is useful.','Work'],['knowledge','/ˈnɑːlɪdʒ/','kiến thức','Reading gives us knowledge.','Study'],['successful','/səkˈsesfəl/','thành công','The project was successful.','Work'],['challenge','/ˈtʃælɪndʒ/','thử thách','Learning a language is a challenge.','Study'],['benefit','/ˈbenɪfɪt/','lợi ích','Exercise has many benefits.','Daily'],['decision','/dɪˈsɪʒən/','quyết định','It was a difficult decision.','Daily'],['develop','/dɪˈveləp/','phát triển','Children develop quickly.','Study'],['focus','/ˈfoʊkəs/','tập trung','Please focus on the lesson.','Study'],['habit','/ˈhæbɪt/','thói quen','Reading is a good habit.','Daily'],['journey','/ˈdʒɜːrni/','hành trình','Learning is a long journey.','Daily'],['language','/ˈlæŋɡwɪdʒ/','ngôn ngữ','English is an international language.','Study'],['mistake','/mɪˈsteɪk/','lỗi','Everyone makes mistakes.','Daily'],['practice','/ˈpræktɪs/','luyện tập','Practice makes progress.','Study'],['progress','/ˈprɑːɡres/','tiến bộ','I can see your progress.','Study'],['require','/rɪˈkwaɪər/','đòi hỏi','This job requires experience.','Work'],['solution','/səˈluːʃən/','giải pháp','We need a simple solution.','Work'],['support','/səˈpɔːrt/','hỗ trợ','Thank you for your support.','People'],['understand','/ˌʌndərˈstænd/','hiểu','I understand the question.','Study'],['valuable','/ˈvæljuəbəl/','có giá trị','Your time is valuable.','Daily'],['adapt','/əˈdæpt/','thích nghi','We must adapt to change.','Work'],['communicate','/kəˈmjuːnɪkeɪt/','giao tiếp','We communicate every day.','People'],['creative','/kriˈeɪtɪv/','sáng tạo','She has a creative idea.','People'],['curious','/ˈkjʊriəs/','tò mò','Curious students ask questions.','People'],['effective','/ɪˈfektɪv/','hiệu quả','This method is effective.','Study'],['essential','/ɪˈsenʃəl/','thiết yếu','Sleep is essential for health.','Daily'],['flexible','/ˈfleksəbəl/','linh hoạt','My schedule is flexible.','Work'],['generous','/ˈdʒenərəs/','hào phóng','He is generous with his time.','People'],['independent','/ˌɪndɪˈpendənt/','độc lập','She is an independent learner.','People'],['prepare','/prɪˈper/','chuẩn bị','I need to prepare for class.','Study'],['reduce','/rɪˈduːs/','giảm','We should reduce waste.','Nature'],['respect','/rɪˈspekt/','tôn trọng','We should respect others.','People'],['resource','/ˈriːsɔːrs/','tài nguyên','Water is an important resource.','Nature'],['responsible','/rɪˈspɑːnsəbəl/','có trách nhiệm','He is responsible for the team.','Work'],['achievable','/əˈtʃiːvəbl/','có thể đạt được','The goal is achievable.','Daily'],['advice','/ədˈvaɪs/','lời khuyên','Can you give me some advice?','People'],['avoid','/əˈvɔɪd/','tránh','Try to avoid distractions.','Study'],['compare','/kəmˈper/','so sánh','Do not compare yourself with others.','Daily'],['concentrate','/ˈkɑːnsəntreɪt/','tập trung','I cannot concentrate with noise.','Study'],['discover','/dɪˈskʌvər/','khám phá','We discovered a new place.','Daily'],['encourage','/ɪnˈkɜːrɪdʒ/','khuyến khích','Teachers encourage students.','People'],['familiar','/fəˈmɪliər/','quen thuộc','The place looks familiar.','Daily'],['motivate','/ˈmoʊtɪveɪt/','tạo động lực','Music can motivate me.','People'],['patient','/ˈpeɪʃənt/','kiên nhẫn','Be patient with yourself.','People'],['purpose','/ˈpɜːrpəs/','mục đích','What is the purpose of this lesson?','Study'],['routine','/ruːˈtiːn/','thói quen thường ngày','I have a morning routine.','Daily'],['strategy','/ˈstrætədʒi/','chiến lược','We need a better strategy.','Work'],['tradition','/trəˈdɪʃən/','truyền thống','This is a family tradition.','People'],['unique','/juˈniːk/','độc đáo','Every person is unique.','People'],['wisdom','/ˈwɪzdəm/','sự khôn ngoan','Experience brings wisdom.','People'],['accurate','/ˈækjərət/','chính xác','Please give accurate information.','Study'],['available','/əˈveɪləbəl/','có sẵn','The book is available online.','Daily'],['common','/ˈkɑːmən/','phổ biến','This is a common mistake.','Study'],['complex','/ˈkɑːmpleks/','phức tạp','The problem is complex.','Work'],['efficient','/ɪˈfɪʃənt/','hiệu quả','This is an efficient way to study.','Study']];
+const KEY='namromah2';let s=JSON.parse(localStorage.getItem(KEY)||'null')||{i:0,learned:[],fav:[],review:{},streak:1,last:'',dark:false,rate:.85};let cat='All',queue=[];
+const $=x=>document.getElementById(x),save=()=>localStorage.setItem(KEY,JSON.stringify(s));function today(){return new Date().toISOString().slice(0,10)}function touch(){let d=today();if(s.last!==d){if(s.last){let n=Math.round((new Date(d)-new Date(s.last))/86400000);s.streak=n===1?s.streak+1:1}s.last=d;save()}}function speak(t){if('speechSynthesis'in window){speechSynthesis.cancel();let u=new SpeechSynthesisUtterance(t);u.lang='en-US';u.rate=+s.rate;speechSynthesis.speak(u)}}function get(i=s.i){let w=W[i%W.length];return{w:w[0],ipa:w[1],m:w[2],e:w[3],c:w[4],i:i%W.length}}
+function home(){let x=get();$('word').textContent=x.w;$('ipa').textContent=x.ipa;$('meaning').textContent=x.m;$('example').textContent=x.e;$('learned').textContent=s.learned.length;$('due').textContent=Object.values(s.review).filter(x=>x.next<=Date.now()).length;$('streak').textContent=s.streak;$('fav').textContent=s.fav.includes(x.w)?'★ Đã lưu':'☆ Lưu'}function learn(){let x=get();if(!s.learned.includes(x.w))s.learned.push(x.w);s.review[x.w]=s.review[x.w]||{level:0,next:Date.now()};save();home();review()}function next(){learn();s.i=(s.i+1)%W.length;save();home()}function fav(){let x=get().w,p=s.fav.indexOf(x);p<0?s.fav.push(x):s.fav.splice(p,1);save();home();vocab()}
+function vocab(){let q=($('search').value||'').toLowerCase(),a=W.map((_,i)=>get(i)).filter(x=>(cat==='All'||x.c===cat)&&(x.w.includes(q)||x.m.includes(q)));$('count').textContent=a.length+' từ';$('list').innerHTML=a.map(x=>`<div class="vrow card"><div><b>${x.w}</b><small>${x.m} · ${x.c}</small></div><div><button data-sp="${x.w}">🔊</button><button data-f="${x.w}">${s.fav.includes(x.w)?'★':'☆'}</button></div></div>`).join('')||'<div class="card empty">Không tìm thấy từ.</div>'}function chips(){let cs=['All',...new Set(W.map(x=>x[4]))];$('chips').innerHTML=cs.map(c=>`<button class="chip ${c===cat?'active':''}" data-c="${c}">${c==='All'?'Tất cả':c}</button>`).join('')}
+function shuffle(a){return[...a].sort(()=>Math.random()-.5)}let qscore=0,qanswer=null;function quiz(){qanswer=W[Math.floor(Math.random()*W.length)];let opts=shuffle([qanswer,...shuffle(W.filter(x=>x!==qanswer)).slice(0,3)]);$('question').textContent=`“${qanswer[0]}” có nghĩa là gì?`;$('options').innerHTML=opts.map(x=>`<button class="option" data-ok="${x[0]===qanswer[0]}">${x[2]}</button>`).join('');$('nextq').hidden=true;$('score').textContent=qscore+' điểm'}function listen(){let a=W[Math.floor(Math.random()*W.length)];$('play').onclick=()=>speak(a[0]);$('feedback').textContent='';let opts=shuffle([a,...shuffle(W.filter(x=>x!==a)).slice(0,3)]);$('listenOpts').innerHTML=opts.map(x=>`<button class="option" data-ok="${x[0]===a[0]}">${x[2]}</button>`).join('');document.querySelectorAll('#listenOpts .option').forEach(b=>b.onclick=()=>{document.querySelectorAll('#listenOpts .option').forEach(x=>x.disabled=true);let ok=b.dataset.ok==='true';b.classList.add(ok?'correct':'wrong');$('feedback').textContent=ok?'🎉 Chính xác!':'❌ Chưa đúng. Nghe lại nhé.'})}function reading(){let o=shuffle(['A daily habit helps you make progress.','You must study for many hours.','English can only be learned with a dictionary.','Reading is not useful.']);$('readOpts').innerHTML=o.map(x=>`<button class="option" data-ok="${x.startsWith('A daily')}">${x}</button>`).join('');document.querySelectorAll('#readOpts .option').forEach(b=>b.onclick=()=>{document.querySelectorAll('#readOpts .option').forEach(x=>x.disabled=true);b.classList.add(b.dataset.ok==='true'?'correct':'wrong')})}
+function review(){queue=Object.entries(s.review).filter(([w,v])=>v.next<=Date.now()).map(([w])=>W.findIndex(x=>x[0]===w)).filter(i=>i>=0);$('reviewCount').textContent=queue.length+' từ';$('empty').hidden=queue.length>0;$('reviewCard').hidden=queue.length===0;if(queue.length)showReview()}function showReview(){let x=get(queue[0]);$('rw').textContent=x.w;$('ripa').textContent=x.ipa;$('rmeaning').textContent=x.m;$('rmeaning').hidden=true;$('grades').hidden=true;$('reveal').hidden=false}function grade(n){let i=queue.shift(),x=get(i),o=s.review[x.w]||{level:0,next:Date.now()},days=n? [1,3,7,14,30][Math.min(o.level+n,4)]:0;s.review[x.w]={level:Math.min(o.level+(n?1:0),4),next:Date.now()+days*86400000};save();review();home()}
+function page(id){document.querySelectorAll('.page').forEach(x=>x.classList.toggle('on',x.id===id));document.querySelectorAll('nav button').forEach(x=>x.classList.toggle('active',x.dataset.page===id));if(id==='home')home();if(id==='vocab'){chips();vocab()}if(id==='quiz')quiz();if(id==='listen')listen();if(id==='reading')reading();if(id==='review')review();scrollTo(0,0)}
+document.addEventListener('click',e=>{let p=e.target.closest('[data-page]');if(p)page(p.dataset.page);let c=e.target.closest('[data-c]');if(c){cat=c.dataset.c;chips();vocab()}let sp=e.target.closest('[data-sp]');if(sp)speak(sp.dataset.sp);let f=e.target.closest('[data-f]');if(f){let i=s.fav.indexOf(f.dataset.f);i<0?s.fav.push(f.dataset.f):s.fav.splice(i,1);save();vocab();home()}let o=e.target.closest('#options .option');if(o){document.querySelectorAll('#options .option').forEach(x=>x.disabled=true);let ok=o.dataset.ok==='true';o.classList.add(ok?'correct':'wrong');if(!ok)document.querySelector('#options [data-ok="true"]').classList.add('correct');if(ok)qscore+=10;$('score').textContent=qscore+' điểm';$('nextq').hidden=false}let g=e.target.closest('#grades [data-g]');if(g)grade(+g.dataset.g)});
+$('speak').onclick=()=>speak(get().w);$('next').onclick=next;$('fav').onclick=fav;$('search').oninput=vocab;$('nextq').onclick=quiz;$('newListen').onclick=listen;$('readSpeak').onclick=()=>speak('Small Steps, Big Progress. Learning English does not have to be difficult. A small daily habit can make a big difference. You can learn five new words, listen to a short conversation, and read a simple paragraph every day. The most important thing is to keep going.');$('reveal').onclick=()=>{$('rmeaning').hidden=false;$('grades').hidden=false;$('reveal').hidden=true};$('theme').onclick=()=>{s.dark=!s.dark;document.body.classList.toggle('dark',s.dark);$('dark').checked=s.dark;save()};$('dark').onchange=e=>{s.dark=e.target.checked;document.body.classList.toggle('dark',s.dark);save()};$('rate').onchange=e=>{s.rate=e.target.value;save()};$('reset').onclick=()=>{if(confirm('Xóa toàn bộ dữ liệu học tập trên thiết bị này?')){localStorage.removeItem(KEY);location.reload()}};touch();document.body.classList.toggle('dark',s.dark);$('dark').checked=s.dark;$('rate').value=s.rate;home();chips();vocab();review();if('serviceWorker'in navigator)navigator.serviceWorker.register('./sw.js').catch(()=>{});

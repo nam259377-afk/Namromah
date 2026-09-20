@@ -1,68 +1,9 @@
-<!DOCTYPE html>
-<html lang="vi">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#6750A4">
-  <title>Namromah</title>
-  <link rel="manifest" href="manifest.json">
-  <link rel="stylesheet" href="style.css">
-</head>
-
-<body>
-
-  <header>
-    <h1>Namromah</h1>
-    <p>Học tiếng Anh mỗi ngày</p>
-  </header>
-
-  <main>
-
-    <section class="card">
-      <div class="label">TỪ VỰNG HÔM NAY</div>
-
-      <h2 id="word">achieve</h2>
-
-      <p id="meaning">đạt được</p>
-
-      <button onclick="speakWord()">🔊 Phát âm</button>
-      <button onclick="nextWord()">Từ tiếp theo →</button>
-
-      <button class="favorite" onclick="favoriteWord()">
-        ⭐ Lưu từ
-      </button>
-    </section>
-
-    <section class="stats">
-      <div>
-        <strong id="learned">0</strong>
-        <span>Đã học</span>
-      </div>
-
-      <div>
-        <strong id="favorites">0</strong>
-        <span>Đã lưu</span>
-      </div>
-
-      <div>
-        <strong id="streak">1</strong>
-        <span>Ngày liên tiếp</span>
-      </div>
-    </section>
-
-    <section class="menu">
-      <button onclick="showQuiz()">📝 Quiz</button>
-      <button>🎧 Listening</button>
-      <button>📖 Reading</button>
-      <button>🧠 Ôn tập</button>
-    </section>
-
-  </main>
-
-  <footer>
-    Namromah • English learning
-  </footer>
-
-  <script src="app.js"></script>
-</body>
-</html>
+<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#6750A4"><title>Namromah</title><link rel="manifest" href="./manifest.json"><link rel="icon" href="./icon.svg"><link rel="stylesheet" href="./style.css"></head><body><header><div><b>Namromah</b><small>Học tiếng Anh mỗi ngày</small></div><button id="theme">🌙</button></header><main>
+<section id="home" class="page on"><div class="card hero"><label>TỪ VỰNG HÔM NAY</label><h1 id="word"></h1><div id="ipa"></div><h2 id="meaning"></h2><p id="example"></p><div class="actions"><button id="speak">🔊 Phát âm</button><button id="next">Từ tiếp theo →</button><button id="fav">☆ Lưu</button></div></div><div class="stats"><div class="card"><b id="learned">0</b><small>Đã học</small></div><div class="card"><b id="due">0</b><small>Cần ôn</small></div><div class="card"><b id="streak">1</b><small>Ngày liên tiếp</small></div></div><h3>Học nhanh</h3><div class="grid"><button class="card tile" data-page="quiz">📝 <b>Quiz</b><small>Kiểm tra từ vựng</small></button><button class="card tile" data-page="listen">🎧 <b>Listening</b><small>Nghe và chọn nghĩa</small></button><button class="card tile" data-page="reading">📖 <b>Reading</b><small>Đọc và hiểu</small></button><button class="card tile" data-page="review">🧠 <b>Ôn tập</b><small>Ôn từ đã học</small></button></div></section>
+<section id="vocab" class="page"><div class="head"><h2>Từ vựng</h2><span id="count"></span></div><input id="search" placeholder="🔎 Tìm từ hoặc nghĩa..."><div id="chips" class="chips"></div><div id="list"></div></section>
+<section id="quiz" class="page"><div class="head"><h2>Quiz</h2><span id="score">0 điểm</span></div><div class="card box"><label id="qno"></label><h2 id="question"></h2><div id="options"></div><button id="nextq" hidden>Câu tiếp theo →</button></div></section>
+<section id="listen" class="page"><div class="head"><h2>Listening</h2></div><div class="card box center"><label>NGHE VÀ CHỌN</label><button id="play" class="round">🔊</button><div id="listenOpts"></div><p id="feedback"></p><button id="newListen">Câu mới</button></div></section>
+<section id="reading" class="page"><div class="head"><h2>Reading</h2></div><article class="card box"><label>A SMALL HABIT</label><h2>Small Steps, Big Progress</h2><p>Learning English does not have to be difficult. A small daily habit can make a big difference. You can learn five new words, listen to a short conversation, and read a simple paragraph every day. The most important thing is to keep going.</p><p>When you meet a new word, try to understand it from the context before checking a dictionary. Then say the word aloud and use it in your own sentence. These small actions help you remember vocabulary for longer.</p><button id="readSpeak">🔊 Nghe bài đọc</button></article><div class="card box"><b>What is the main idea?</b><div id="readOpts"></div></div></section>
+<section id="review" class="page"><div class="head"><h2>Ôn tập</h2><span id="reviewCount"></span></div><div id="empty" class="card empty">Chưa có từ cần ôn. Hãy học vài từ trước nhé!</div><div id="reviewCard" class="card box center" hidden><label>ÔN TỪ</label><h1 id="rw"></h1><div id="ripa"></div><button id="reveal">Hiện nghĩa</button><h2 id="rmeaning" hidden></h2><div id="grades" hidden><button data-g="0">😕 Chưa nhớ</button><button data-g="1">🙂 Nhớ</button><button data-g="2">😎 Rất nhớ</button></div></div></section>
+<section id="settings" class="page"><div class="head"><h2>Cài đặt</h2></div><div class="card box"><label class="row">Chế độ tối <input id="dark" type="checkbox"></label><label class="row">Tốc độ phát âm <select id="rate"><option value="0.7">Chậm</option><option value="0.85" selected>Bình thường</option><option value="1">Nhanh</option></select></label><button id="reset" class="danger">Xóa dữ liệu học tập</button></div></section>
+</main><nav><button data-page="home">🏠<small>Trang chủ</small></button><button data-page="vocab">📚<small>Từ vựng</small></button><button data-page="quiz">📝<small>Quiz</small></button><button data-page="review">🧠<small>Ôn tập</small></button><button data-page="settings">⚙️<small>Cài đặt</small></button></nav><script src="./app.js"></script></body></html>
