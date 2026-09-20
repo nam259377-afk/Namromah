@@ -1,9 +1,130 @@
-<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#6750A4"><title>Namromah</title><link rel="manifest" href="./manifest.json"><link rel="icon" href="./icon.svg"><link rel="stylesheet" href="./style.css"></head><body><header><div><b>Namromah</b><small>Học tiếng Anh mỗi ngày</small></div><button id="theme">🌙</button></header><main>
-<section id="home" class="page on"><div class="card hero"><label>TỪ VỰNG HÔM NAY</label><h1 id="word"></h1><div id="ipa"></div><h2 id="meaning"></h2><p id="example"></p><div class="actions"><button id="speak">🔊 Phát âm</button><button id="next">Từ tiếp theo →</button><button id="fav">☆ Lưu</button></div></div><div class="stats"><div class="card"><b id="learned">0</b><small>Đã học</small></div><div class="card"><b id="due">0</b><small>Cần ôn</small></div><div class="card"><b id="streak">1</b><small>Ngày liên tiếp</small></div></div><h3>Học nhanh</h3><div class="grid"><button class="card tile" data-page="quiz">📝 <b>Quiz</b><small>Kiểm tra từ vựng</small></button><button class="card tile" data-page="listen">🎧 <b>Listening</b><small>Nghe và chọn nghĩa</small></button><button class="card tile" data-page="reading">📖 <b>Reading</b><small>Đọc và hiểu</small></button><button class="card tile" data-page="review">🧠 <b>Ôn tập</b><small>Ôn từ đã học</small></button></div></section>
-<section id="vocab" class="page"><div class="head"><h2>Từ vựng</h2><span id="count"></span></div><input id="search" placeholder="🔎 Tìm từ hoặc nghĩa..."><div id="chips" class="chips"></div><div id="list"></div></section>
-<section id="quiz" class="page"><div class="head"><h2>Quiz</h2><span id="score">0 điểm</span></div><div class="card box"><label id="qno"></label><h2 id="question"></h2><div id="options"></div><button id="nextq" hidden>Câu tiếp theo →</button></div></section>
-<section id="listen" class="page"><div class="head"><h2>Listening</h2></div><div class="card box center"><label>NGHE VÀ CHỌN</label><button id="play" class="round">🔊</button><div id="listenOpts"></div><p id="feedback"></p><button id="newListen">Câu mới</button></div></section>
-<section id="reading" class="page"><div class="head"><h2>Reading</h2></div><article class="card box"><label>A SMALL HABIT</label><h2>Small Steps, Big Progress</h2><p>Learning English does not have to be difficult. A small daily habit can make a big difference. You can learn five new words, listen to a short conversation, and read a simple paragraph every day. The most important thing is to keep going.</p><p>When you meet a new word, try to understand it from the context before checking a dictionary. Then say the word aloud and use it in your own sentence. These small actions help you remember vocabulary for longer.</p><button id="readSpeak">🔊 Nghe bài đọc</button></article><div class="card box"><b>What is the main idea?</b><div id="readOpts"></div></div></section>
-<section id="review" class="page"><div class="head"><h2>Ôn tập</h2><span id="reviewCount"></span></div><div id="empty" class="card empty">Chưa có từ cần ôn. Hãy học vài từ trước nhé!</div><div id="reviewCard" class="card box center" hidden><label>ÔN TỪ</label><h1 id="rw"></h1><div id="ripa"></div><button id="reveal">Hiện nghĩa</button><h2 id="rmeaning" hidden></h2><div id="grades" hidden><button data-g="0">😕 Chưa nhớ</button><button data-g="1">🙂 Nhớ</button><button data-g="2">😎 Rất nhớ</button></div></div></section>
-<section id="settings" class="page"><div class="head"><h2>Cài đặt</h2></div><div class="card box"><label class="row">Chế độ tối <input id="dark" type="checkbox"></label><label class="row">Tốc độ phát âm <select id="rate"><option value="0.7">Chậm</option><option value="0.85" selected>Bình thường</option><option value="1">Nhanh</option></select></label><button id="reset" class="danger">Xóa dữ liệu học tập</button></div></section>
-</main><nav><button data-page="home">🏠<small>Trang chủ</small></button><button data-page="vocab">📚<small>Từ vựng</small></button><button data-page="quiz">📝<small>Quiz</small></button><button data-page="review">🧠<small>Ôn tập</small></button><button data-page="settings">⚙️<small>Cài đặt</small></button></nav><script src="./app.js"></script></body></html>
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#6750A4">
+<title>Namromah</title>
+<link rel="manifest" href="./manifest.json">
+<link rel="icon" href="./icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<div id="app">
+<header class="topbar">
+  <div><div class="brand">Namromah</div><div class="subtitle">Học tiếng Anh mỗi ngày</div></div>
+  <button class="icon-btn" id="themeBtn">🌙</button>
+</header>
+
+<main>
+<section id="home" class="page active">
+  <div class="hero card">
+    <div class="eyebrow">TỪ HÔM NAY</div>
+    <div class="word" id="homeWord">achieve</div>
+    <div class="ipa" id="homeIpa">/əˈtʃiːv/</div>
+    <div class="meaning" id="homeMeaning">đạt được</div>
+    <div class="example" id="homeExample"></div>
+    <div class="actions">
+      <button class="primary" id="speakBtn">🔊 Nghe</button>
+      <button class="secondary" id="nextBtn">Từ tiếp theo →</button>
+      <button class="secondary" id="saveBtn">☆ Lưu</button>
+    </div>
+  </div>
+
+  <div class="stats-grid">
+    <div class="stat card"><b id="learnedStat">0</b><span>Đã học</span></div>
+    <div class="stat card"><b id="masteredStat">0</b><span>Đã nhớ</span></div>
+    <div class="stat card"><b id="reviewStat">0</b><span>Cần ôn</span></div>
+  </div>
+
+  <div class="progress-card card">
+    <div class="progress-head"><b>Tiến độ bộ từ</b><span id="progressText">0%</span></div>
+    <div class="progress"><i id="progressBar"></i></div>
+    <small>Học và đánh giá từ để tăng mức độ ghi nhớ.</small>
+  </div>
+
+  <div class="section-title">Học nhanh</div>
+  <div class="feature-grid">
+    <button class="feature card" data-page="review">🧠<strong>Ôn tập</strong><span id="reviewShortcut">0 từ đến hạn</span></button>
+    <button class="feature card" data-page="quiz">📝<strong>Quiz</strong><span>Kiểm tra trí nhớ</span></button>
+  </div>
+</section>
+
+<section id="vocab" class="page">
+  <div class="page-head"><h2>Từ vựng</h2><span id="vocabCount"></span></div>
+  <input class="search" id="searchInput" placeholder="🔎 Tìm từ hoặc nghĩa...">
+  <div class="chips" id="categoryChips"></div>
+  <div id="vocabList" class="list"></div>
+</section>
+
+<section id="review" class="page">
+  <div class="page-head"><h2>Ôn tập</h2><span id="reviewTitle"></span></div>
+  <div class="review-guide card">
+    <b>Quy tắc ôn tập</b>
+    <p>Không nhớ → gặp lại sớm. Nhớ → giãn khoảng cách. Rất nhớ → giãn lâu hơn.</p>
+  </div>
+  <div id="reviewEmpty" class="empty card">🎉 Không có từ đến hạn. Hãy học thêm từ mới!</div>
+  <div id="reviewCard" class="review-card card" hidden>
+    <div class="eyebrow">THẺ ÔN TẬP</div>
+    <div class="word" id="reviewWord"></div>
+    <div class="ipa" id="reviewIpa"></div>
+    <button class="primary" id="reviewSpeak">🔊 Nghe</button>
+    <button class="secondary full" id="reviewReveal">Hiện nghĩa</button>
+    <div id="reviewMeaning" class="meaning hidden"></div>
+    <div id="reviewExample" class="example hidden"></div>
+    <div id="reviewActions" class="review-actions hidden">
+      <button class="bad" data-grade="0">😕 Chưa nhớ</button>
+      <button class="ok" data-grade="1">🙂 Nhớ</button>
+      <button class="good" data-grade="2">😎 Rất nhớ</button>
+    </div>
+  </div>
+</section>
+
+<section id="quiz" class="page">
+  <div class="page-head"><h2>Quiz</h2><span id="quizScore">0 điểm</span></div>
+  <div class="quiz card">
+    <div class="eyebrow" id="quizProgress">CÂU 1</div>
+    <h3 id="quizQuestion"></h3>
+    <div id="quizOptions" class="options"></div>
+    <button class="secondary full" id="nextQuizBtn" hidden>Câu tiếp theo →</button>
+  </div>
+</section>
+
+<section id="stats" class="page">
+  <div class="page-head"><h2>Tiến độ</h2></div>
+  <div class="stats-big card">
+    <div><b id="statLearned">0</b><span>Đã học</span></div>
+    <div><b id="statMastered">0</b><span>Đã nhớ</span></div>
+    <div><b id="statFav">0</b><span>Yêu thích</span></div>
+  </div>
+  <div class="card breakdown">
+    <h3>Mức độ ghi nhớ</h3>
+    <div class="bar-row"><span>Mới</span><i><em id="level0"></em></i><b id="level0n">0</b></div>
+    <div class="bar-row"><span>Đang học</span><i><em id="level1"></em></i><b id="level1n">0</b></div>
+    <div class="bar-row"><span>Khá nhớ</span><i><em id="level2"></em></i><b id="level2n">0</b></div>
+    <div class="bar-row"><span>Rất nhớ</span><i><em id="level3"></em></i><b id="level3n">0</b></div>
+    <div class="bar-row"><span>Thành thạo</span><i><em id="level4"></em></i><b id="level4n">0</b></div>
+  </div>
+</section>
+
+<section id="settings" class="page">
+  <div class="page-head"><h2>Cài đặt</h2></div>
+  <div class="settings-list card">
+    <label class="setting"><span>Chế độ tối</span><input type="checkbox" id="darkToggle"></label>
+    <label class="setting"><span>Tốc độ phát âm</span><select id="rateSelect"><option value=".7">Chậm</option><option value=".85">Bình thường</option><option value="1">Nhanh</option></select></label>
+    <button class="danger" id="resetBtn">Xóa dữ liệu học tập</button>
+  </div>
+</section>
+</main>
+
+<nav class="bottom-nav">
+<button class="nav active" data-page="home">🏠<span>Trang chủ</span></button>
+<button class="nav" data-page="vocab">📚<span>Từ vựng</span></button>
+<button class="nav" data-page="review">🧠<span>Ôn tập</span></button>
+<button class="nav" data-page="stats">📊<span>Tiến độ</span></button>
+<button class="nav" data-page="settings">⚙️<span>Cài đặt</span></button>
+</nav>
+</div>
+<script src="./app.js"></script>
+</body>
+</html>
