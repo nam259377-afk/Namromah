@@ -280,19 +280,28 @@ function answerReading(btn,ans){
 }
 $("readingNext").onclick=()=>{readingIndex=(readingIndex+1)%READING.length;renderReading()};
 
+function setFlashSide(front){
+  const f=$("flashFront"), b=$("flashBack");
+  f.hidden=!front; b.hidden=front;
+  f.style.display=front?"flex":"none";
+  b.style.display=front?"none":"flex";
+}
 function renderFlash(){
   const w=WORDS[flashIndex];
   $("flashWord").textContent=w[0];
   $("flashMeaning").textContent=w[2];
   $("flashExample").textContent=`“${w[3]}”`;
   $("flashProgress").textContent=`${flashIndex+1}/${WORDS.length}`;
-  $("flashFront").hidden=false;
-  $("flashBack").hidden=true;
+  setFlashSide(true);
 }
 $("flashcard").onclick=()=>{
-  const showingFront=!$("flashFront").hidden;
-  $("flashFront").hidden=!showingFront;
-  $("flashBack").hidden=showingFront;
+  const front=$("flashFront");
+  const back=$("flashBack");
+  const showBack=front.hidden===false;
+  front.hidden=showBack;
+  back.hidden=!showBack;
+  front.style.display=showBack?"none":"flex";
+  back.style.display=showBack?"flex":"none";
 };
 $("flashSpeak").onclick=()=>speak(WORDS[flashIndex][0]);
 $("flashNext").onclick=()=>{
